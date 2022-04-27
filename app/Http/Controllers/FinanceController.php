@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Finance;
 use App\Http\Requests\StoreFinanceRequest;
 use App\Http\Requests\UpdateFinanceRequest;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Auth\Events\Validated;
 
 class FinanceController extends Controller
@@ -52,7 +53,7 @@ class FinanceController extends Controller
 
        
         Finance::create($validatedData);
-        return redirect('/');
+        return redirect('/home');
     }
 
     /**
@@ -95,8 +96,10 @@ class FinanceController extends Controller
      * @param  \App\Models\Finance  $finance
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Finance $finance)
+    public function destroy($id)
     {
-        //
+     
+        Finance::destroy($id);
+      return redirect('/home');
     }
 }

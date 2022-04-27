@@ -26,8 +26,15 @@
                 <td>{{ $finance->amount }}</td>
                 <td>{{ $finance->date }}</td>
                 <td>{{ $finance->type }}</td>
-                <td><i class="bi bi-pencil-square text-success"></i><i class=" bi bi-trash text-danger"></i></td>
-              </tr>
+                <td><i class="bi bi-pencil-square text-success"></i>
+                
+                  <form action="/home/{{ $finance->id }}" method="POST" class="d-inline">
+                    @method('DELETE')
+                    @csrf
+                  <button class="border-0 badge bg-danger" onclick="return confirm('Are you sure?')"><i class=" bi bi-trash text-white"></i></td></button>
+              
+                </form>
+                </tr>
               @endforeach
             
               
@@ -42,7 +49,7 @@
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                  <form action="/" method="POST" >
+                  <form action="/home" method="POST" >
                     @csrf
                     <div class="mb-3">
                       <label for="judul" class="col-form-label">Judul:</label>
@@ -55,7 +62,7 @@
                    
                     <div class="mb-3">
                       <label for="startDate" class="col-form-label">Tanggal dan waktu:</label>
-                    <input id="startDate" class="form-control" value="{{ old('date') }}" name="date" type="datetime-local" />
+                    <input id="startDate" class="form-control" name="date" type="datetime-local" />
                     </div>
 
                     <div class="mb-3">

@@ -14,5 +14,5 @@ use App\Http\Controllers\FinanceController;
 |
 */
 
-Route::get('/', [FinanceController::class,'index']);
-Route::post('/', [FinanceController::class,'store']);
+Route::get('/home', [FinanceController::class,'index']);
+Route::resource('/home', FinanceController::class);
