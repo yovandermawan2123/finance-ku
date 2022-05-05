@@ -15,4 +15,5 @@ use App\Http\Controllers\FinanceController;
 */
 
 Route::get('/home', [FinanceController::class,'index']);
+Route::get('/home/{id}', [FinanceController::class,'edit']);
 Route::resource('/home', FinanceController::class);

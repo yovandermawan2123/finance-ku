@@ -73,9 +73,15 @@ class FinanceController extends Controller
      * @param  \App\Models\Finance  $finance
      * @return \Illuminate\Http\Response
      */
-    public function edit(Finance $finance)
+    public function edit($id)
+ 
     {
-        //
+      
+       $finance = Finance::find($id);
+       return response()->json([
+           'status' => 200,
+           'finance' => $finance
+       ]);
     }
 
     /**
@@ -85,9 +91,19 @@ class FinanceController extends Controller
      * @param  \App\Models\Finance  $finance
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateFinanceRequest $request, Finance $finance)
+    public function update(UpdateFinanceRequest $request, $id)
     {
-        //
+        $validatedData = $request->validate([
+
+            "title" => "required|max:255",
+            "amount" => "required|numeric",
+            "date" => "required|date",
+            "type" => "in:pengeluaran,pemasukan"
+        ]);
+
+       Finance::where('id', $id)
+        ->update($validatedData);
+        return redirect('/home');
     }
 
     /**
