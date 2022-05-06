@@ -7,7 +7,7 @@
       
     <div class="px-2 py-2 bg-white">
 
-      <h5>Uang Pemasukan : Rp. 3000000</h5>
+      <h5>Uang Pemasukan : {{ rupiah(3000000) }}</h5>
       <div class="progress bg-grey mb-3">
         <div class="progress-bar bg-warning" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" >25%</div>
       </div>
@@ -57,7 +57,7 @@
           <div class="bg-light  rounded  mb-3 px-2 py-2 shadow">
             <div class="d-flex">
             <h5>{{ $finance->title }}</h5>
-            <h5 class="fw-100 ms-auto">Rp. {{ $finance->amount }}</h5>
+            <h5 class="fw-100 ms-auto">{{ rupiah($finance->amount) }}</h5>
           </div>
          
 
