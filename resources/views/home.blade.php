@@ -4,7 +4,17 @@
     <div class="col-md-7 bg-success px-3 py-3 rounded">
       <h5 class="text-white">Catat Pengeluaran dan Pemasukan keuangan mu setiap hari!</h5>
       <button type="button" class="btn btn-outline-light mb-3 mt-3" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">Catat Keuangan</button>
-          
+      
+    <div class="px-2 py-2 bg-white">
+
+      <h5>Uang Pemasukan : Rp. 3000000</h5>
+      <div class="progress bg-grey mb-3">
+        <div class="progress-bar bg-warning" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" >25%</div>
+      </div>
+      <hr class="text-grey">
+
+{{-- 
+
           <table class="bg-white table table-striped table-hover">
             <thead>
               <tr>
@@ -40,7 +50,41 @@
             
               
             </tbody>
-          </table>
+          </table> --}}
+          
+          @foreach ($finances as $finance)
+
+          <div class="bg-light  rounded  mb-3 px-2 py-2 shadow">
+            <div class="d-flex">
+            <h5>{{ $finance->title }}</h5>
+            <h5 class="fw-100 ms-auto">Rp. {{ $finance->amount }}</h5>
+          </div>
+         
+
+          <div class="d-flex ">
+            <div class="d-block">
+            <small>{{ $finance->date }}</small>
+            <br>
+            <small>{{ $finance->type }}</small>
+          </div>
+
+            <div class="d-flex ms-auto px-2 py-2">
+            <button type="button" class="editbtn border-0 badge bg-success me-1" value="{{ $finance->id }}"><i class=" bi bi-pencil-square text-white"></i></button>
+                
+            <form action="/home/{{ $finance->id }}" method="POST" class="d-flex">
+              @method('DELETE')
+              @csrf
+            <button class="border-0 badge bg-danger" onclick="return confirm('Are you sure?')"><i class=" bi bi-trash text-white"></i></button>
+            </form>
+          </div>
+
+          </div>
+
+          </div>
+          
+
+          @endforeach
+        </div>
        {{-- Add modal --}}
           <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
