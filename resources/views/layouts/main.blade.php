@@ -16,8 +16,21 @@
 box-shadow: inset 10px -1px 44px -35px rgba(0,0,0,0.75);
 
 
-
       }
+
+      .page-item.active .page-link {
+    z-index: 1;
+    color: #fff;
+    background-color: rgb(10, 110, 49); //your color
+    border-color: green; //your color
+}
+
+.page-item .page-link {
+    z-index: 1;
+    color: rgb(10, 110, 49);
+    background-color: rgb(219, 218, 218); //your color
+    border-color: black;
+}
       </style>
   </head>
   <body>
