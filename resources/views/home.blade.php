@@ -5,11 +5,11 @@
       <h5 class="text-white">Catat Pengeluaran dan Pemasukan keuangan mu setiap hari!</h5>
       <button type="button" class="btn btn-outline-light mb-3 mt-3" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">Catat Keuangan</button>
       
-    <div class="px-2 py-2 bg-white">
+    <div class="px-2 py-2  rounded" style="background-color: rgb(252, 250, 250)">
 
-      <h5>Uang Pemasukan : {{ rupiah(3000000) }}</h5>
+      <h5>Sisa Uang : {{ rupiah($revenue - $expense) }}</h5>
       <div class="progress bg-grey mb-3">
-        <div class="progress-bar bg-warning" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" >25%</div>
+        <div class="progress-bar bg-warning" role="progressbar" style="width: {{ persentase($revenue, $expense) }};" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" >{{ persentase($revenue, $expense) }}</div>
       </div>
       <hr class="text-grey">
 
@@ -54,7 +54,8 @@
           
           @foreach ($finances as $finance)
 
-          <div class="bg-light  rounded  mb-3 px-2 py-2 shadow">
+        
+          <div class="bg-light  rounded  mb-3 px-3 py-3 shadow border border-2 ">
             <div class="d-flex">
             <h5>{{ $finance->title }}</h5>
             <h5 class="fw-100 ms-auto">{{ rupiah($finance->amount) }}</h5>

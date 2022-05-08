@@ -8,6 +8,8 @@ use App\Http\Requests\UpdateFinanceRequest;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Auth\Events\Validated;
 
+use function PHPSTORM_META\type;
+
 class FinanceController extends Controller
 {
     /**
@@ -20,6 +22,9 @@ class FinanceController extends Controller
       return view('home', [
         'title' => 'Home',
         'finances' => Finance::all(),
+        'revenue' => DB::table('finances')->where('type', 'pemasukan')->sum('amount'),
+        'expense' => DB::table('finances')->where('type', 'pengeluaran')->sum('amount')
+       
         
       ]);
     }
