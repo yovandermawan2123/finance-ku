@@ -15,6 +15,7 @@ class CreateFinancesTable extends Migration
     {
         Schema::create('finances', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id');
             $table->string('title');
             $table->double('amount');
             $table->timestamp('date')->default(now());

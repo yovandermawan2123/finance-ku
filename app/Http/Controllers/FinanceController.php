@@ -22,9 +22,9 @@ class FinanceController extends Controller
     {
       return view('home', [
         'title' => 'Home',
-        'finances' => Finance::latest()->paginate(5),
-        'revenue' => DB::table('finances')->where('type', 'pemasukan')->sum('amount'),
-        'expense' => DB::table('finances')->where('type', 'pengeluaran')->sum('amount')
+        'finances' => Finance::latest()->where('user_id', auth()->user()->id)->paginate(5),
+        'revenue' => DB::table('finances')->where([['type', '=', 'pemasukan'], ['user_id', '=', auth()->user()->id]])->sum('amount'),
+        'expense' => DB::table('finances')->where([['type', '=', 'pengeluaran'], ['user_id', '=', auth()->user()->id]])->sum('amount')
        
         
       ]);
@@ -56,6 +56,8 @@ class FinanceController extends Controller
             "date" => "required|date",
             "type" => "in:pengeluaran,pemasukan"
         ]);
+
+        $validatedData['user_id'] = auth()->user()->id;
 
        
         Finance::create($validatedData);
@@ -106,6 +108,7 @@ class FinanceController extends Controller
             "date" => "required|date",
             "type" => "in:pengeluaran,pemasukan"
         ]);
+        $validatedData['user_id'] = auth()->user()->id;
 
        Finance::where('id', $id)
         ->update($validatedData);
