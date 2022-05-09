@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FinanceController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +16,13 @@ use App\Http\Controllers\FinanceController;
 |
 */
 
-Route::get('/home', [FinanceController::class,'index']);
-Route::get('/home/{id}', [FinanceController::class,'edit']);
-Route::resource('/home', FinanceController::class);
+Route::get('/home', [FinanceController::class,'index'])->middleware('auth');
+Route::get('/home/{id}', [FinanceController::class,'edit'])->middleware('auth');;
+Route::resource('/home', FinanceController::class)->middleware('auth');;
+
+//login & register
+Route::get('/', [LoginController::class, 'index'])->name('login')->middleware('guest');
+Route::post('/', [LoginController::class, 'authenticate']);
+Route::post('/logout', [LoginController::class, 'logout']);
+Route::get('/register', [RegisterController::class, 'index']);
+Route::post('/register', [RegisterController::class, 'store']);

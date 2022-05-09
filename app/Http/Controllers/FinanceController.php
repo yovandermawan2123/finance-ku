@@ -22,7 +22,7 @@ class FinanceController extends Controller
     {
       return view('home', [
         'title' => 'Home',
-        'finances' => Finance::latest()->paginate(2),
+        'finances' => Finance::latest()->paginate(5),
         'revenue' => DB::table('finances')->where('type', 'pemasukan')->sum('amount'),
         'expense' => DB::table('finances')->where('type', 'pengeluaran')->sum('amount')
        

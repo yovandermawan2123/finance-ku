@@ -14,11 +14,7 @@
         <div class="progress-bar bg-warning" role="progressbar" style="width: {{ persentase($revenue, $expense) }};" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" >{{ persentase($revenue, $expense) }}</div>
       </div>
       <hr class="text-grey">
-
-
-          
     
-              
 
           @foreach ($finances as $finance)
 
@@ -122,8 +118,9 @@
         
                   
     
-             <h5>Data Tidak ditemukan</h5>
-          
+             <div class="d-flex justify-content-center">
+              <h5>Catatan keuangan tidak ditemukan</h5>
+             </div>
           @endif
          
 
